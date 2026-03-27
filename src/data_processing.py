@@ -13,7 +13,7 @@ def bandpass_filter (signal, lowcut, highcut, sampling_rate, order = 2):
     y = lfilter(b, a, signal)
     return y
 
-def hello():
+def yo():
     return "Gurt"
 def derivative_filter(ecg_signal, fs = 100):
     kernel = np.array([-1, -2, 0, 1, 2]) * (1/8)
