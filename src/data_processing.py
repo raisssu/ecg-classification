@@ -23,11 +23,13 @@ def derivative_filter(ecg_signal, fs = 100):
 
 def pad_data(data):
     padded = np.empty((len(data), len(data[0])+100, len(data[0][0])))
+    progress = tqdm.tqdm(total=len(data), desc="padding data")
     for i in range(len(data)):
-            for j in range(len(data[0][0])):
-                signal = data[i][:,j]
-                inverted = nk.ecg_invert(signal, sampling_rate=100)
-                padded[i][:,j] = np.pad(inverted[0],(100, 0), 'edge')
+        for j in range(len(data[0][0])):
+            signal = data[i][:,j]
+            inverted = nk.ecg_invert(signal, sampling_rate=100)
+            padded[i][:,j] = np.pad(inverted[0],(100, 0), 'edge')
+        progress.update(1)
     return padded
 
                 

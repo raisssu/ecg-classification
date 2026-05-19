@@ -16,7 +16,7 @@ def load_raw_data():
     df.scp_codes = df.scp_codes.apply(lambda x: ast.literal_eval(x))
 
     if sampling_rate == 100:
-        data = [wfdb.rdsamp(path+f) for f in tqdm.tqdm(df.filename_lr)]
+        data = [wfdb.rdsamp(path+f) for f in tqdm.tqdm(df.filename_lr)] # .head(100) for testing
     else:
         data = [wfdb.rdsamp(path+f) for f in tqdm.tqdm(df.filename_hr)]
     data = np.array([signal for signal, meta in data])
